@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>68班的服务器</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("div.photo").click(function(){
+                //照片集动作
+                var temp=$(this);
+                temp.css("border-style", "inset");
+                console.log(window.location.host);
+                console.log(window.location.port);
+                window.open("http://"+window.location.host+"/photo/","_blank");
+                setTimeout(function(){
+                    temp.css("border-style","outset");
+                },100);
+            });
+        });
+    </script>
+</head>
+<body style="margin: 0;">
+    <!--标题-->
+    <div style="display: block; background-color: #f1f1f1; padding: 20px; text-align: center; text-align: center;">
+        <h1>欢迎，这是展一小2022届六年级八班毕业生的服务器。</h1>
+    </div>
+    <!--上传文件-->
+    <div style="margin: 30px auto; background-color: #3ccad9; padding: 10px; color: #5b5fdbc2; max-width: 100px; text-align: center; border-style: outset; border-color: #4bd9e8;cursor: pointer;" class="photo">
+        <h2 style="margin:0px">相册</h2>
+    </div>
+    <!--鸣谢-->
+    <div style="display: block; background-color: #f1f1f1; padding: 20px; text-align: center; text-align: center;">
+        <h2>特别鸣谢</h2>
+        <br />
+        <a href="https://www.runoob.com" target="_blank">菜鸟编程</a>
+        <a href="https://space.bilibili.com/34786453" target="_blank">bilibili UP主：康文昌</a>
+        <a href="https://www.csdn.net" target="_blank">CSDN</a>
+    </div>
+</body>
+</html>

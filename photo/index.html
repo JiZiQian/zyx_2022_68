@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>相册-68班的服务器</title>
+    <style>
+    div.back{
+        background-color:#3ccad9;
+        padding:10px;
+        color:#5b5fdbc2;
+        max-width:15px;
+        text-align:center;
+        border-style:outset;
+        border-color:#4bd9e8;
+        cursor:pointer;
+        margin:10px;
+        vertical-align:text-top;
+        position:absolute;
+        top:0px;
+        left:0px;
+    }
+    div.next{
+        background-color:#3ccad9;
+        padding:10px;
+        color:#5b5fdbc2;
+        max-width:15px;
+        text-align:center;
+        border-style:outset;
+        border-color:#4bd9e8;
+        cursor:pointer;
+        margin:10px;
+        vertical-align:text-top;
+        position:absolute;
+        top:0px;
+        right:0px;
+    }
+    div.jump{
+        background-color:#3ccad9;
+        padding:10px;
+        color:#5b5fdbc2;
+        max-width:40px;
+        text-align:center;
+        border-style:outset;
+        border-color:#4bd9e8;
+        cursor:pointer;
+        margin:10px;
+        vertical-align:text-top;
+        position:fixed;
+        bottom:0px;
+        right:0px;
+    }
+    img{
+        display:inline;
+        position:absolute;
+        top:0px;
+    }
+    p{
+        display:inline;
+        margin:0px;
+    }
+    p.jump{
+        position:fixed;
+        right:86px;
+        bottom:10px;
+    }
+    input{
+        position:fixed;
+        bottom:10px;
+    }
+    </style>
+</head>
+<body style="margin:0px;">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        let size=2;
+        let number=1;
+        function next(){
+            if(number===size){
+                alert("已是最后一张照片！");
+                return;
+            }
+            number++;
+            document.getElementById("photo").src="/photo/images/"+String(number)+".jpg";
+            document.getElementById("jump").value=String(number);
+        }
+        function back(){
+            if(number===1){
+                alert("已是第一张照片！");
+                return;
+            }
+            number--;
+            document.getElementById("photo").src="/photo/images/"+String(number)+".jpg";
+            document.getElementById("jump").value=String(number);
+        }
+        function jump(){
+            let temp=Number(document.getElementById("jump").value);
+            if(temp<1){
+                alert("页面不存在！");
+                return;
+            }
+            if(temp>size){
+                alert("页面不存在！");
+                return;
+            }
+            number=temp;
+            document.getElementById("photo").src="/photo/images/"+String(number)+".jpg";
+            document.getElementById("jump").value=String(number);
+        }
+        $(document).ready(function(){
+            $("div.back").click(function(){
+                //上一张
+                back();
+            });
+            $("div.next").click(function(){
+                //下一张
+                next();
+            });
+            $("div.jump").click(function(){
+                //跳转
+                jump();
+            });
+        });
+    </script>
+    <div class="back">
+        <p class="back">上</p>
+        <br />
+        <p class="back">一</p>
+        <br />
+        <p class="back">张</p>
+    </div>
+    <div class="next">
+        <p class="next">下</p>
+        <br />
+        <p class="next">一</p>
+        <br />
+        <p class="next">张</p>
+    </div>
+    <img src="/photo/images/1.jpg" alt="无法打开照片" id="photo"/>
+    <input value="1" id="jump" size="4"></input>
+    <div class="jump">
+        <p>跳转</p>
+    </div>
+    <script>
+        document.write("<p class=\"jump\" id=\"jumpP\">/"+String(size)+"</p>");
+        document.getElementById("jump").style.right=String(86+document.getElementById("jumpP").offsetWidth)+"px";
+        setInterval(function(){
+            let photo=document.getElementById("photo");
+            let width=window.innerWidth;
+            let height=window.innerHeight;
+            let ratio=photo.width/photo.height;
+            let screenRatio=(width-122)/height;
+            if(screenRatio===ratio){
+                document.getElementById("photo").width=width;
+                document.getElementById("photo").height=height;
+            }
+            else if(screenRatio>ratio){
+                document.getElementById("photo").width=ratio*height;
+                document.getElementById("photo").height=height;
+            }
+            else{
+                document.getElementById("photo").width=width;
+                document.getElementById("photo").height=width/ratio;
+            }
+            document.getElementById("jump").size=String(document.getElementById("jump").value.length);
+            document.getElementById("photo").style.left=String((width-document.getElementById("photo").width)/2)+"px";
+        },100);
+    </script>
+</body>
+</html>

@@ -12,7 +12,11 @@
                 temp.css("border-style", "inset");
                 console.log(window.location.host);
                 console.log(window.location.port);
-                window.open(window.location.href+"/photo/","_blank");
+                let href=window.location.href;
+                if(href[href.length-1]!=="/"){
+                    href+="/";
+                }
+                window.open(window.location.href+"photo/","_blank");
                 setTimeout(function(){
                     temp.css("border-style","outset");
                 },100);

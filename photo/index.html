@@ -93,7 +93,7 @@
                 return;
             }
             number--;
-            document.getElementById("photo").src="/photo/images/"+String(number)+".jpg";
+            document.getElementById("photo").src=href+"images/"+String(number)+".jpg";
             document.getElementById("jump").value=String(number);
         }
         function jump(){
@@ -152,7 +152,7 @@
             let photo=document.getElementById("photo");
             let width=window.innerWidth;
             let height=window.innerHeight;
-            let ratio=photo.width/photo.height;
+            let ratio=photo.naturalWidth/photo.naturalHeight;
             let screenRatio=(width-122)/height;
             if(screenRatio===ratio){
                 document.getElementById("photo").width=width;

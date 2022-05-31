@@ -46,7 +46,7 @@
         margin:10px;
         vertical-align:text-top;
         position:fixed;
-        bottom:0px;
+        bottom:10px;
         right:0px;
     }
     img{
@@ -62,11 +62,11 @@
     p.jump{
         position:fixed;
         right:110px;
-        bottom:10px;
+        bottom:20px;
     }
     input{
         position:fixed;
-        bottom:10px;
+        bottom:20px;
         font-size:200%;
     }
     </style>
@@ -100,19 +100,16 @@
         }
         function jump(){
             let temp=Number(document.getElementById("jump").value);
-            if(temp<1){
+            if(temp>1&&temp<size){
+                number=temp;
+                document.getElementById("photo").src=href+"images/"+String(number)+".jpg";
+                document.getElementById("jump").value=String(number);
+            }
+            else{
                 alert("页面不存在！");
                 document.getElementById("jump").value=String(number);
                 return;
             }
-            if(temp>size){
-                alert("页面不存在！");
-                document.getElementById("jump").value=String(number);
-                return;
-            }
-            number=temp;
-            document.getElementById("photo").src="/photo/images/"+String(number)+".jpg";
-            document.getElementById("jump").value=String(number);
         }
         $(document).ready(function(){
             $("div.back").click(function(){
@@ -155,7 +152,7 @@
         setInterval(function(){
             let photo=document.getElementById("photo");
             let width=window.innerWidth-152;
-            let height=window.innerHeight-88;
+            let height=window.innerHeight-98;
             let ratio=photo.naturalWidth/photo.naturalHeight;
             let screenRatio=(width-122)/height;
             if(screenRatio===ratio){

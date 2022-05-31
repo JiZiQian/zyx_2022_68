@@ -100,7 +100,7 @@
         }
         function jump(){
             let temp=Number(document.getElementById("jump").value);
-            if(temp>1&&temp<size){
+            if(temp>1&&temp<=size){
                 number=temp;
                 document.getElementById("photo").src=href+"images/"+String(number)+".jpg";
                 document.getElementById("jump").value=String(number);

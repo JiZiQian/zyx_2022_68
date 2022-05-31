@@ -8,7 +8,7 @@
         background-color:#3ccad9;
         padding:10px;
         color:#5b5fdbc2;
-        max-width:15px;
+        max-width:30px;
         text-align:center;
         border-style:outset;
         border-color:#4bd9e8;
@@ -23,7 +23,7 @@
         background-color:#3ccad9;
         padding:10px;
         color:#5b5fdbc2;
-        max-width:15px;
+        max-width:30px;
         text-align:center;
         border-style:outset;
         border-color:#4bd9e8;
@@ -38,7 +38,7 @@
         background-color:#3ccad9;
         padding:10px;
         color:#5b5fdbc2;
-        max-width:40px;
+        max-width:70px;
         text-align:center;
         border-style:outset;
         border-color:#4bd9e8;
@@ -60,12 +60,13 @@
     }
     p.jump{
         position:fixed;
-        right:86px;
+        right:110px;
         bottom:10px;
     }
     input{
         position:fixed;
         bottom:10px;
+        font-size:200%;
     }
     </style>
 </head>
@@ -125,6 +126,7 @@
             });
         });
     </script>
+    <img src="" alt="无法打开照片" id="photo"/>
     <div class="back">
         <p class="back">上</p>
         <br />
@@ -139,19 +141,18 @@
         <br />
         <p class="next">张</p>
     </div>
-    <img src="" alt="无法打开照片" id="photo"/>
     <input value="1" id="jump" size="4"></input>
     <div class="jump">
         <p>跳转</p>
     </div>
     <script>
         document.write("<p class=\"jump\" id=\"jumpP\">/"+String(size)+"</p>");
-        document.getElementById("jump").style.right=String(86+document.getElementById("jumpP").offsetWidth)+"px";
+        document.getElementById("jump").style.right=String(110+document.getElementById("jumpP").offsetWidth)+"px";
         document.getElementById("photo").src=href+"/images/1.jpg";
         setInterval(function(){
             let photo=document.getElementById("photo");
-            let width=window.innerWidth;
-            let height=window.innerHeight;
+            let width=window.innerWidth-152;
+            let height=window.innerHeight-88;
             let ratio=photo.naturalWidth/photo.naturalHeight;
             let screenRatio=(width-122)/height;
             if(screenRatio===ratio){
@@ -167,7 +168,7 @@
                 document.getElementById("photo").height=width/ratio;
             }
             document.getElementById("jump").size=String(document.getElementById("jump").value.length);
-            document.getElementById("photo").style.left=String((width-document.getElementById("photo").width)/2)+"px";
+            document.getElementById("photo").style.left=String((width+152-document.getElementById("photo").width)/2)+"px";
         },100);
     </script>
 </body>

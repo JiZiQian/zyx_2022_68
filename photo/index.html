@@ -72,15 +72,19 @@
 <body style="margin:0px;">
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>
-        let size=2;
+        let size=222;
         let number=1;
+        let href=window.location.href;
+        if(href[href.length-1]!=="/"){
+            href+="/";
+        }
         function next(){
             if(number===size){
                 alert("已是最后一张照片！");
                 return;
             }
             number++;
-            document.getElementById("photo").src="/photo/images/"+String(number)+".jpg";
+            document.getElementById("photo").src=href+"images/"+String(number)+".jpg";
             document.getElementById("jump").value=String(number);
         }
         function back(){
@@ -135,7 +139,7 @@
         <br />
         <p class="next">张</p>
     </div>
-    <img src="/photo/images/1.jpg" alt="无法打开照片" id="photo"/>
+    <img src="" alt="无法打开照片" id="photo"/>
     <input value="1" id="jump" size="4"></input>
     <div class="jump">
         <p>跳转</p>
@@ -143,6 +147,7 @@
     <script>
         document.write("<p class=\"jump\" id=\"jumpP\">/"+String(size)+"</p>");
         document.getElementById("jump").style.right=String(86+document.getElementById("jumpP").offsetWidth)+"px";
+        document.getElementById("photo").src=href+"/images/1.jpg";
         setInterval(function(){
             let photo=document.getElementById("photo");
             let width=window.innerWidth;

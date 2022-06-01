@@ -112,13 +112,14 @@
             }
         }
         function ENTER(){
+	    console.log("key pressed.");
             let x;
-	        if(window.event){
-	        	x=event.keyCode;
-	        }
-	        else if(event.which){
-		        x=event.which;
-	        }
+	    if(window.event){
+	      	x=event.keyCode;
+	    }
+	    else if(event.which){
+		x=event.which;
+	    }
             if(String.fromCharCode(x)=="\n"){
                 jump();
             }

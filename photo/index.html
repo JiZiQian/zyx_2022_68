@@ -111,6 +111,18 @@
                 return;
             }
         }
+        function ENTER(){
+            let x;
+            if(window.event){
+                x=event.keyCode;
+            }
+            else if(event.which){
+                x=event.which;
+            }
+            if(String.fromCharCode(x)=="\n"){
+                jump();
+            }
+        }
         $(document).ready(function(){
             $("div.back").click(function(){
                 //上一张
@@ -141,7 +153,7 @@
         <br />
         <p class="next">张</p>
     </div>
-    <input value="1" id="jump" size="4"></input>
+    <input value="1" id="jump" size="0" onkeypress="ENTER()"></input>
     <div class="jump">
         <p>跳转</p>
     </div>
@@ -153,7 +165,15 @@
             let photo=document.getElementById("photo");
             let width=window.innerWidth-152;
             let height=window.innerHeight-98;
-            let ratio=photo.naturalWidth/photo.naturalHeight;
+            let ratio;
+            if(photo.naturalWidth){
+                ratio=photo.naturalWidth/photo.naturalHeight;
+            }
+            else{
+                let image=new Image();
+                image.src=photo.src;
+                ratio=image.width/image.height;
+            }
             let screenRatio=(width-122)/height;
             if(screenRatio===ratio){
                 document.getElementById("photo").width=width;

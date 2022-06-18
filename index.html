@@ -7,12 +7,11 @@
         a{
             font-size:200%;
         }
-        div.photo{
+        div.button{
             margin:30px auto;
             background-color:#3ccad9;
             padding:10px;
             color:#5b5fdbc2;
-            max-width:100px;
             text-align:center;
             border-color:#4bd9e8;
             cursor:pointer;
@@ -21,7 +20,7 @@
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
-            $("div.photo").click(function(){
+            $("div#photo").click(function(){
                 //照片集动作
                 var temp=$(this);
                 temp.css("border-style", "inset");
@@ -36,6 +35,21 @@
                     temp.css("border-style","outset");
                 },100);
             });
+            $("div#classmateAndTeachers").click(function(){
+                //照片集动作
+                var temp=$(this);
+                temp.css("border-style", "inset");
+                console.log(window.location.host);
+                console.log(window.location.port);
+                let href=window.location.href;
+                if(href[href.length-1]!=="/"){
+                    href+="/";
+                }
+                window.open(window.location.href+"classmateAndTeachers/","_blank");
+                setTimeout(function(){
+                    temp.css("border-style","outset");
+                },100);
+            });
         });
     </script>
 </head>
@@ -44,9 +58,13 @@
     <div style="display: block; background-color: #f1f1f1; padding: 20px; text-align: center; text-align: center;">
         <h1>欢迎，这是展一小2022届六年级八班毕业生的服务器。</h1>
     </div>
-    <!--上传文件-->
-    <div style="border-style:outset;" class="photo">
+    <!--相册-->
+    <div style="border-style:outset;max-width:100px;" class="button" id="photo">
         <h2 style="margin:0px">相册</h2>
+    </div>
+    <!--同学和老师们-->
+    <div style="border-style:outset;" class="button" id="classmateAndTeachers">
+        <h2 style="margin:0px">同学和老师们</h2>
     </div>
     <!--鸣谢-->
     <div style="display: block; background-color: #f1f1f1; padding: 20px; text-align: center; text-align: center;">
